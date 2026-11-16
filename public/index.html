@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사업계획서</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <div class="no-print">
+    <header class="app-head">
+      <h1>사업계획서 입력</h1>
+      <p class="sub">대주단 제출용 · 입력값 기반 사업수지 계산</p>
+    </header>
+
+    <section class="presets">
+      <span class="label">임시 값</span>
+      <button type="button" data-preset="A">A 해운대 그린테라스</button>
+      <button type="button" data-preset="B">B 영통 센트럴파크</button>
+      <button type="button" data-preset="C">C 유성 리버뷰</button>
+      <button type="button" class="ghost" id="clear">비우기</button>
+      <button type="button" class="ghost" id="print">인쇄 · PDF</button>
+    </section>
+
+    <form id="form" autocomplete="off">
+      <fieldset>
+        <legend>사업 개요</legend>
+        <div class="grid2">
+          <label>사업명<input name="name" type="text" placeholder="예: 해운대 그린테라스"></label>
+          <label>사업대상지<input name="site" type="text" placeholder="예: 부산광역시 해운대구"></label>
+        </div>
+        <div id="regionStatus" class="region-status" aria-live="polite"></div>
+        <div id="marketStatus" class="region-status" aria-live="polite"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>주택형</legend>
+        <div class="table-wrap">
+          <table id="units" class="stack">
+            <thead>
+              <tr><th>이름</th><th>전용㎡</th><th>공급평</th><th>세대수</th><th>공급면적 소계(평)</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">합계</td>
+                <td class="num" data-label="세대수 합계" id="sumHouseholds">0</td>
+                <td class="num" data-label="공급면적 합계(평)" id="sumArea">0</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <button type="button" id="addRow" class="ghost">+ 행 추가</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>분양 · 비용</legend>
+        <div class="grid4">
+          <label>평당가 <small>만원</small><input name="pricePerPyeong" class="n" inputmode="decimal"></label>
+          <label>상가 <small>억원</small><input name="retail" class="n" inputmode="decimal"></label>
+          <label>기타유입 <small>억원</small><input name="otherInflow" class="n" inputmode="decimal"></label>
+          <label>고정비 <small>억원</small><input name="fixedCost" class="n" inputmode="decimal"></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>금융</legend>
+        <div class="grid4">
+          <label>본PF <small>억원</small><input name="mainPF" class="n" inputmode="decimal"></label>
+          <label>본PF 금융비용 <small>억원</small><input name="pfFinanceCost" class="n" inputmode="decimal"></label>
+          <label>후순위 <small>억원</small><input name="subordinated" class="n" inputmode="decimal"></label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <article id="report" class="report" aria-label="사업계획서"></article>
+</main>
+<script src="calc.js"></script>
+<script src="market.js"></script>
+<script src="charts.js"></script>
+<script src="report.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
